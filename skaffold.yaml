@@ -17,3 +17,13 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: aubre/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.ts'
+            dest: .
+          - src: '**/*.tsx'
+            dest: .
