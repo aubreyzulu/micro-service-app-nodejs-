@@ -29,7 +29,7 @@ export const currentUser = (
       req.session?.jwt,
       process.env.JWT_KEY!
     ) as UserPayload;
-    res.status(200).send({ user: payload });
+    //  res.status(200).send({ user: payload });
     req.user = payload;
   } catch (error) {
     throw new NotAuthorizedError();

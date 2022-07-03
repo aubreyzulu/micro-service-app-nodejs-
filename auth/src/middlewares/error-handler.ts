@@ -15,4 +15,5 @@ export const errorHandler = (
     .status(500)
     .send({ errors: [{ message: 'Something went wrong, please try again' }] });
   // console.error('something went wrong', err);
+  next();
 };

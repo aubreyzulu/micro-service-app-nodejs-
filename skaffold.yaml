@@ -27,3 +27,5 @@ build:
             dest: .
           - src: '**/*.tsx'
             dest: .
+          - src: '**/*.js'
+            dest: .
