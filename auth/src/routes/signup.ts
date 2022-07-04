@@ -3,8 +3,7 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 
-import { BadRequestError } from '@stark-innovations/common';
-import { requestValidator } from '@stark-innovations/common';
+import { BadRequestError, requestValidator } from '@stark-innovations/common';
 
 const router = express.Router();
 
