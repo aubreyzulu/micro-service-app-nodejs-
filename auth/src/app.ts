@@ -4,8 +4,8 @@ import 'express-async-errors';
 
 import morgan from 'morgan';
 
-import { NotFoundError } from './errors/not-found-error';
-import { errorHandler } from './middlewares/error-handler';
+import { NotFoundError } from '@stark-innovations/common';
+import { errorHandler } from '@stark-innovations/common';
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
 import { signoutRouter } from './routes/signout';
