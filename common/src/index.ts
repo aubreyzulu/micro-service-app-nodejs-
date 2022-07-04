@@ -1,23 +1,12 @@
-export type Person = {
-  name: string;
-  age: number;
-};
-const number = 2;
+export * from './errors/bad-request-error';
+export * from './errors/custom-error';
+export * from './errors/database-connection-error';
+export * from './errors/not-authorized-error';
+export * from './errors/not-found-error';
+export * from './errors/request-validation-error';
 
-function greet(person: Person) {
-  return 'Hello ' + person.name;
-}
+export * from './middlewares/current-user';
+export * from './middlewares/error-handler';
 
-interface Todo {
-  title: string;
-  description: string;
-  completed: boolean;
-}
-
-type TodoPreview = Pick<Todo, 'title' | 'completed'>;
-
-const todo: TodoPreview = {
-  title: 'Clean room',
-  completed: false,
-};
-export default greet;
+export * from './middlewares/require-auth';
+export * from './middlewares/validate-request';
