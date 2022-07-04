@@ -5,3 +5,9 @@ export type ErrorObject = {
 export interface Errors {
   errors: ErrorObject[];
 }
+
+export interface CurrentUser {
+  id: string;
+  email: string;
+  iat: number;
+}
