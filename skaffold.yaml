@@ -9,6 +9,7 @@ build:
   local:
     push: false
   artifacts:
+    # Authentication service
     - image: aubre/auth
       context: auth
       docker:
@@ -17,6 +18,16 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    # Tickets service
+    - image: aubre/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    # Clients service
     - image: aubre/client
       context: client
       docker:
