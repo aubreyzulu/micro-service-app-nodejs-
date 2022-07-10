@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { User } from '../models/user';
+import { User, UserAttrs } from '../models/user';
 
 import { BadRequestError, requestValidator } from '@stark-innovations/common';
 
@@ -25,7 +25,7 @@ router.post(
       throw new BadRequestError('User already exists with this email');
     }
 
-    const user = new User({ email, password });
+    const user = new User<UserAttrs>({ email, password });
     await user.save();
 
     // Generate JWT

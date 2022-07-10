@@ -4,7 +4,13 @@ import 'express-async-errors';
 
 import morgan from 'morgan';
 
-import { NotFoundError, errorHandler } from '@stark-innovations/common';
+import {
+  NotFoundError,
+  errorHandler,
+  currentUser,
+} from '@stark-innovations/common';
+import { createTicketRouter } from './routes/new';
+import { getTicketRouter } from './routes/show';
 
 const app = express();
 app.set('trust proxy', true);
@@ -17,12 +23,9 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
-// app.use(currentUserRouter);
-// app.use(signinRouter);
-// app.use(signoutRouter);
-// app.use(signupRouter);
-
-// Not found handler
+app.use(currentUser);
+app.use(createTicketRouter);
+app.use(getTicketRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();

@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
 import { Password } from '../services/password';
 
-interface UserAttrs {
+export interface UserAttrs {
   email: string;
   password: string;
 }

@@ -17,6 +17,8 @@ spec:
         - name: tickets
           image: aubre/tickets
           env:
+            - name: MONGO_URL
+              value: mongodb://tickets-mongo-srv:27017/tickets
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
