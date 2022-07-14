@@ -28,9 +28,10 @@ afterAll(async () => {
 });
 
 const signin = (): string[] => {
+  const id = new mongoose.Types.ObjectId().toHexString();
   // Build a JSON payload {id, password}
   const payload = {
-    id: '44hgrhgrgr844',
+    id,
     email: 'test@test.com',
   };
 

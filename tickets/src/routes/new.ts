@@ -39,4 +39,4 @@ router.post(
   }
 );
 
-export { router as createTicketRouter };
+export { router as createTicketRouter, ticketValidations };
