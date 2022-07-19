@@ -10,3 +10,11 @@ export * from './middlewares/error-handler';
 
 export * from './middlewares/require-auth';
 export * from './middlewares/validate-request';
+
+/**
+ * Events module NATS Streaming Server
+ */
+export * from './events/publisher';
+export * from './events/listener';
+export * from './events/subjects';
+export * from './events/ticket-created-event';
