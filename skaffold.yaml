@@ -27,6 +27,15 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+      # Orders service
+    - image: aubre/orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     # Clients service
     - image: aubre/client
       context: client

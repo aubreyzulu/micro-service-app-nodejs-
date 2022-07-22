@@ -12,6 +12,7 @@ spec:
     - host: ticketing.dev
       http:
         paths:
+          # Auth  Microservice
           - path: /api/users/?(.*)
             pathType: Prefix
             backend:
@@ -19,6 +20,17 @@ spec:
                 name: auth-srv
                 port:
                   number: 3000
+
+          # Orders Microservice
+          - path: /api/orders/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orders-srv
+                port:
+                  number: 3000
+
+          # Tickets Microservice
           - path: /api/tickets/?(.*)
             pathType: Prefix
             backend:
@@ -26,6 +38,7 @@ spec:
                 name: tickets-srv
                 port:
                   number: 3000
+          # Client Service (NextJs)
           - path: /?(.*)
             pathType: Prefix
             backend:
