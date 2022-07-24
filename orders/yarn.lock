@@ -617,10 +617,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stark-innovations/common@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@stark-innovations/common/-/common-1.0.14.tgz#abb56e982fd4f731cafa171c63095111c6fabb6b"
-  integrity sha512-WG9ZXFfEWjarVOmOCaVzsstPdplry0X6KJJDMkt/lFhFTiQKVm398S++VRNNramKAMmY1B0/4I1/iWwFfJ5YTQ==
+"@stark-innovations/common@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@stark-innovations/common/-/common-1.0.15.tgz#c34ebf4042eec177994dc22c10302f351e4eafc3"
+  integrity sha512-Q8YXTdWr8aSW3i9wl2QqTyfTu8uTnfDGc+zHW5UvgushjYnuXgZICBxRYXqx3Yt+8w3RRtxe1cH9cghgAPhLcw==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.13"

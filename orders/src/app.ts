@@ -9,6 +9,10 @@ import {
   errorHandler,
   currentUser,
 } from '@stark-innovations/common';
+import { createOrderRouter } from './routes/new';
+import { getOrdersRouter } from './routes';
+import { getOrderRouter } from './routes/show';
+import { deleteOrderRouter } from './routes/delete';
 
 const app = express();
 app.set('trust proxy', true);
@@ -22,6 +26,10 @@ app.use(
   })
 );
 app.use(currentUser);
+app.use(createOrderRouter);
+app.use(getOrdersRouter);
+app.use(getOrderRouter);
+app.use(deleteOrderRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();
