@@ -4,6 +4,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { Order, OrdersAttrs } from '../../models/orders';
 import { Ticket, TicketAttrs } from '../../models/ticket';
+import { natsWrapper } from '../../nats-wrapper';
 
 import { signin } from '../../test/setup';
 
@@ -17,7 +18,7 @@ it('return an error when no ticketId is provided', async () => {
 });
 
 it('return an error when an invalid ticketId is provided', async () => {
-   await request(app)
+  await request(app)
     .post('/api/orders')
     .set('Cookie', signin())
     .send({ ticketId: 'invalid' })
@@ -77,4 +78,21 @@ it('reserve a ticket', async () => {
   expect(response.status).toEqual(201);
   expect(response.body.order.ticket.id).toEqual(ticket.id);
 });
+
+it('publishes order:created  event', async () => {
+  const ticket = new Ticket<TicketAttrs>({
+    title: 'concert',
+    userId: new Types.ObjectId().toHexString(),
+    price: 20,
+  });
+  await ticket.save();
+
+  const response = await request(app)
+    .post('/api/orders')
+    .set('Cookie', signin())
+    .send({ ticketId: ticket.id });
+  expect(response.status).toEqual(201);
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});
+
 // });
