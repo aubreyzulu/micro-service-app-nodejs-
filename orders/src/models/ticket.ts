@@ -1,8 +1,8 @@
 import { OrderStatus } from '@stark-innovations/common';
 import { Schema, model, Document, Model } from 'mongoose';
-import { Orders } from './orders';
+import { Order } from './orders';
 
-interface TicketAttrs {
+export interface TicketAttrs {
   title: string;
   price: number;
   userId: string;
@@ -38,11 +38,9 @@ const ticketSchema = new Schema<TicketAttrs, Model<TicketDoc>>(
   }
 );
 
-/**
- * This method is used to check if a ticket is reserved or not.
- */
+/** This method is used to check if a ticket is reserved or not. */
 ticketSchema.methods.isReserved = async function (): Promise<boolean> {
-  const reserved = await Orders.findOne({
+  const reserved = await Order.findOne({
     ticket: this,
     status: {
       $in: [

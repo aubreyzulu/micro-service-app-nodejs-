@@ -45,6 +45,6 @@ const ordersSchema = new Schema<OrdersAttrs>(
   }
 );
 
-const Orders = model<OrdersAttrs>('Orders', ordersSchema);
+const Order = model<OrdersAttrs>('Orders', ordersSchema);
 
-export { Orders };
+export { Order };
