@@ -3,11 +3,12 @@ import { Schema, model, Document, Model } from 'mongoose';
 import { Order } from './orders';
 
 export interface TicketAttrs {
+  _id?: string;
   title: string;
   price: number;
   userId: string;
 }
-export interface TicketDoc extends Document, TicketAttrs {
+export interface TicketDoc extends Document<string>, TicketAttrs {
   isReserved(): Promise<boolean>;
 }
 
@@ -28,6 +29,8 @@ const ticketSchema = new Schema<TicketAttrs, Model<TicketDoc>>(
   },
   {
     timestamps: true,
+    optimisticConcurrency: true,
+    versionKey: 'version',
     toJSON: {
       transform(doc, ret) {
         ret.id = ret._id;

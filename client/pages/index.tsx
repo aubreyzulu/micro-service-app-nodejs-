@@ -2,6 +2,7 @@ import type { NextPage, NextPageContext } from 'next';
 
 import axios from 'axios';
 import buildClient from './api/build-client';
+import { headers } from 'nats';
 
 const getCurrentUser = async () => {
   const response = await axios.get('/api/users/current-user');
@@ -17,7 +18,6 @@ const Home: NextPage<Props> = ({ user }) => {
     </>
   );
 };
-
 export const getServerSideProps = async (context: NextPageContext) => {
   const client = buildClient(context);
   const { data } = await client.get('/api/users/current-user');

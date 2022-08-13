@@ -3,7 +3,7 @@ import { app } from '../../app';
 import { natsWrapper } from '../../nats-wrapper';
 import { signin } from '../../test/setup';
 
-it('has a route handler listening to /api/tickets', async () => {
+it('Has a route handler listening to /api/tickets', async () => {
   const response = await request(app).post('/api/tickets').send({});
 
   expect(response.status).not.toEqual(404);

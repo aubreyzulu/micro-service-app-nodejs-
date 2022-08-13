@@ -3,12 +3,12 @@ import request from 'supertest';
 import { app } from '../../app';
 import { signin } from '../../test/setup';
 
-it('return 404 if route not found', async () => {
+it('Return 404 if route not found', async () => {
   const id = new mongoose.Types.ObjectId().toHexString();
   await request(app).get(`/api/tickets/${id}`).send({}).expect(404);
 });
 
-it('return a ticket if the ticket is found', async () => {
+it('Return a ticket if the ticket is found', async () => {
   const cookie = signin();
   const response = await request(app)
     .post('/api/tickets')

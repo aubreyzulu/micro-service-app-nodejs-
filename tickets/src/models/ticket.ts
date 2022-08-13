@@ -1,12 +1,17 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model } from 'mongoose';
 
 export interface TicketAttrs {
   title: string;
   price: number;
   userId: string;
 }
+export interface TicketDoc extends Document, TicketAttrs {
+  version: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-const ticketSchema = new mongoose.Schema<TicketAttrs>(
+const ticketSchema = new mongoose.Schema<TicketAttrs, Model<TicketDoc>>(
   {
     title: {
       type: String,
@@ -23,6 +28,8 @@ const ticketSchema = new mongoose.Schema<TicketAttrs>(
   },
   {
     timestamps: true,
+    optimisticConcurrency: true,
+    versionKey: 'version',
     toJSON: {
       transform(doc, ret) {
         ret.id = ret._id;
@@ -33,5 +40,8 @@ const ticketSchema = new mongoose.Schema<TicketAttrs>(
   }
 );
 
-const Ticket = mongoose.model<TicketAttrs>('Ticket', ticketSchema);
+const Ticket = mongoose.model<TicketAttrs, Model<TicketDoc>>(
+  'Ticket',
+  ticketSchema
+);
 export { Ticket };

@@ -1,5 +1,5 @@
 import { OrderStatus } from '@stark-innovations/common';
-import { model, Schema } from 'mongoose';
+import { Model, model, Schema } from 'mongoose';
 import { TicketDoc } from './ticket';
 
 const { Types } = Schema;
@@ -11,9 +11,13 @@ export interface OrdersAttrs {
   expiresAt: Date;
 }
 
-export interface OrdersDoc extends Document, OrdersAttrs {}
+export interface OrdersDoc extends Document, OrdersAttrs {
+  version: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-const ordersSchema = new Schema<OrdersAttrs>(
+const ordersSchema = new Schema<OrdersAttrs, Model<OrdersDoc>>(
   {
     userId: {
       type: String,
@@ -36,6 +40,8 @@ const ordersSchema = new Schema<OrdersAttrs>(
   },
   {
     timestamps: true,
+    optimisticConcurrency: true,
+    versionKey: 'version',
     toJSON: {
       transform(doc, ret) {
         ret.id = ret._id;
@@ -45,6 +51,6 @@ const ordersSchema = new Schema<OrdersAttrs>(
   }
 );
 
-const Order = model<OrdersAttrs>('Orders', ordersSchema);
+const Order = model<OrdersAttrs, Model<OrdersDoc>>('Orders', ordersSchema);
 
 export { Order };
