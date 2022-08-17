@@ -1,5 +1,6 @@
 import { OrderStatus } from '@stark-innovations/common';
-import { Model, model, Schema } from 'mongoose';
+
+import { Model, model, Schema, Document } from 'mongoose';
 import { TicketDoc } from './ticket';
 
 const { Types } = Schema;

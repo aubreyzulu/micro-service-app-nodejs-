@@ -12,3 +12,5 @@ export class TicketCreatedPublisher extends Publisher<TicketCreatedEvent> {
   //   await this.client.publish(this.subject, JSON.stringify(data));
   // }
 }
+
+

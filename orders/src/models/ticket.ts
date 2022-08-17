@@ -8,11 +8,20 @@ export interface TicketAttrs {
   price: number;
   userId: string;
 }
-export interface TicketDoc extends Document<string>, TicketAttrs {
+export interface TicketDoc extends TicketAttrs, Document<string> {
+  version: number;
+  createdAt: Date;
+  updatedAt: Date;
   isReserved(): Promise<boolean>;
 }
+interface TicketModel extends Model<TicketDoc> {
+  findByEvent(event: {
+    id: string;
+    version: number;
+  }): Promise<TicketDoc | null>;
+}
 
-const ticketSchema = new Schema<TicketAttrs, Model<TicketDoc>>(
+const ticketSchema = new Schema<TicketDoc, TicketModel>(
   {
     title: {
       type: String,
@@ -41,6 +50,16 @@ const ticketSchema = new Schema<TicketAttrs, Model<TicketDoc>>(
   }
 );
 
+ticketSchema.statics.findByEvent = async (event: {
+  id: string;
+  version: number;
+}) => {
+  return Ticket.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  });
+};
+
 /** This method is used to check if a ticket is reserved or not. */
 ticketSchema.methods.isReserved = async function (): Promise<boolean> {
   const reserved = await Order.findOne({
@@ -56,5 +75,6 @@ ticketSchema.methods.isReserved = async function (): Promise<boolean> {
   return !!reserved;
 };
 
-const Ticket = model<TicketAttrs, Model<TicketDoc>>('Ticket', ticketSchema);
+const Ticket = model<TicketDoc, TicketModel>('Ticket', ticketSchema);
+
 export { Ticket };
