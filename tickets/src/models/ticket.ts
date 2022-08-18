@@ -4,6 +4,7 @@ export interface TicketAttrs {
   title: string;
   price: number;
   userId: string;
+  orderId?: string;
 }
 export interface TicketDoc extends Document, TicketAttrs {
   version: number;
@@ -24,6 +25,10 @@ const ticketSchema = new mongoose.Schema<TicketAttrs, Model<TicketDoc>>(
     userId: {
       type: String,
       required: true,
+    },
+    orderId: {
+      type: String,
+      required: false,
     },
   },
   {

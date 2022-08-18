@@ -3,12 +3,12 @@ import { Schema, model, Document, Model } from 'mongoose';
 import { Order } from './orders';
 
 export interface TicketAttrs {
-  _id?: string;
+  _id: string;
   title: string;
   price: number;
   userId: string;
 }
-export interface TicketDoc extends TicketAttrs, Document<string> {
+export interface TicketDoc extends TicketAttrs, Omit<Document<string>, '_id'> {
   version: number;
   createdAt: Date;
   updatedAt: Date;

@@ -12,6 +12,7 @@ it(`return 401 if user tries to cancel an order that doesn't belong to him/her`,
   const cookie = signin();
   const userId = new Types.ObjectId().toHexString();
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId,
     price: 20,
@@ -35,6 +36,7 @@ it('cancels an order', async () => {
   const cookie = signin();
   const userId = new Types.ObjectId().toHexString();
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId,
     price: 20,
@@ -68,6 +70,7 @@ it('emits an order cancelled event', async () => {
   const cookie = signin();
   const userId = new Types.ObjectId().toHexString();
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId,
     price: 20,

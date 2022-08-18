@@ -10,6 +10,7 @@ it('gets the orders for the current user', async () => {
   const cookie = signin();
   const userId = new Types.ObjectId().toHexString();
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId,
     price: 20,
@@ -34,6 +35,7 @@ it('return 401 if user tries to access another user order', async () => {
   const cookie = signin();
   const userId = new Types.ObjectId().toHexString();
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId,
     price: 20,
@@ -52,5 +54,3 @@ it('return 401 if user tries to access another user order', async () => {
     .send()
     .expect(401);
 });
-
-

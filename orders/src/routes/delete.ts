@@ -39,7 +39,7 @@ router.delete('/api/orders/:id', requireAuth, async (req, res) => {
     },
   });
 
-  res.status(204).send({ message: 'orders deleted', order });
+  res.status(204).send({ message: 'orders cancelled', order });
 });
 
 export { router as deleteOrderRouter };

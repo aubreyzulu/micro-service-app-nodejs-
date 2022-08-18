@@ -44,6 +44,7 @@ it('it return  an error when the ticket  is not found', async () => {
 it('it return  an error when the ticket  is already reserved', async () => {
   const cookie = signin();
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId: new Types.ObjectId().toHexString(),
     price: 20,
@@ -65,6 +66,7 @@ it('it return  an error when the ticket  is already reserved', async () => {
 
 it('reserve a ticket', async () => {
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId: new Types.ObjectId().toHexString(),
     price: 20,
@@ -81,6 +83,7 @@ it('reserve a ticket', async () => {
 
 it('publishes order:created  event', async () => {
   const ticket = new Ticket<TicketAttrs>({
+    _id: new Types.ObjectId().toHexString(),
     title: 'concert',
     userId: new Types.ObjectId().toHexString(),
     price: 20,
