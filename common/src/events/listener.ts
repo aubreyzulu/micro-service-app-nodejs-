@@ -24,7 +24,7 @@ export abstract class Listener<T extends Event> {
   /**
    * Stan Client
    */
-  private client: Stan;
+  protected client: Stan;
   /**
    * Timeout for the ack wait
    */
