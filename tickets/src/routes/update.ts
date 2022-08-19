@@ -4,6 +4,7 @@ import {
   requireAuth,
   NotAuthorizedError,
   requestValidator,
+  BadRequestError,
 } from '@stark-innovations/common';
 import { Ticket } from '../models/ticket';
 import { ticketValidations } from './new';
@@ -24,13 +25,19 @@ router.put(
     if (!ticket) {
       throw new NotFoundError();
     }
-
+    /**Error if user is not owner of the ticket being edited */
     if (ticket.userId !== req.user!.id) {
       throw new NotAuthorizedError();
     }
-
+    /** Error if ticket has been reserved (means it has orderId) */
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket');
+    }
+    /**Update and save the ticket */
     ticket.set({ title, price });
     await ticket.save();
+
+    /**Publish a ticket updated Event */
     new TicketUpdatedPublisher(natsWrapper.client).publish({
       id: ticket.id,
       version: ticket.version,
