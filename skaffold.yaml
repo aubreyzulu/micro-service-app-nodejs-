@@ -36,6 +36,15 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+      # Expiration service
+    - image: aubre/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     # Clients service
     - image: aubre/client
       context: client

@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {
-  OrderCancelledEvent,
-  OrderStatus,
-  TicketUpdatedEvent,
-} from '@stark-innovations/common';
+import { OrderCancelledEvent, OrderStatus } from '@stark-innovations/common';
 import { Types } from 'mongoose';
 import { Ticket, TicketAttrs } from '../../../models/ticket';
 import { natsWrapper } from '../../../nats-wrapper';
@@ -51,8 +47,7 @@ const setup = async () => {
 
 describe('Order Created Listener', () => {
   it('updates the ticket status to free (unreserved )', async () => {
-    const { orderCancelledListener, data, msg, ticket } =
-      await setup();
+    const { orderCancelledListener, data, msg, ticket } = await setup();
     /** Call the onMessage function with the data object and the message object */
     await orderCancelledListener.onMessage(data, msg);
 
