@@ -65,7 +65,7 @@ describe('Order Created Listener', () => {
     /** Expect that ack is called */
     expect(msg.ack).toHaveBeenCalled();
   });
-  it('publishes a ticket updated event', async () => {
+  it('Publishes a ticket updated event', async () => {
     const { orderCancelledListener, data, msg, ticket } = await setup();
     /** Call the onMessage function with the data object and the message object */
     await orderCancelledListener.onMessage(data, msg);
