@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { app } from './app';
+import { ExpirationCompleteListener } from './events/listerners/expiration-complete-listener';
 import { TicketCreatedListener } from './events/listerners/ticket-created-listener';
 import { TicketUpdatedListener } from './events/listerners/ticket-updated-listener';
 import { natsWrapper } from './nats-wrapper';
@@ -50,6 +51,7 @@ const start = async () => {
     /** Listen for events */
     new TicketCreatedListener(natsWrapper.client).listen();
     new TicketUpdatedListener(natsWrapper.client).listen();
+    new ExpirationCompleteListener(natsWrapper.client).listen();
   } catch (error) {
     console.log('Error connecting to MongoDB', error);
   }

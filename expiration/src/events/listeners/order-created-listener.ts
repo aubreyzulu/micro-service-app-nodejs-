@@ -14,12 +14,13 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     /**Delay to process the job (time for the order to expire) */
     const delay = new Date(data.expiresAt).getTime() - new Date().getTime();
     console.log('waiting time', delay);
+
     /**Add job to queue */
     await expirationQueue.add(
       {
         orderId: data.id,
       },
-      { delay: 10000 }
+      { delay: 1000 }
     );
 
     /**Acknowledges receiving the event and job added to queue */

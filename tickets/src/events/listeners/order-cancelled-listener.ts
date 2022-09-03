@@ -13,6 +13,7 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   queueGroupName = QUEUE_GROUP_NAME;
 
   async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
+    console.log(data);
     try {
       const ticket = await Ticket.findById(data.ticket.id);
 

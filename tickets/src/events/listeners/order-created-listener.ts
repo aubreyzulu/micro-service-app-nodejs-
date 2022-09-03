@@ -4,7 +4,6 @@ import {
   Subjects,
 } from '@stark-innovations/common';
 import { Message } from 'node-nats-streaming';
-import { title } from 'process';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
 import { QUEUE_GROUP_NAME } from './queue-group-name';

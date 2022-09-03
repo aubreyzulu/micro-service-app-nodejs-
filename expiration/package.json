@@ -10,7 +10,7 @@
     "test": "jest --watchAll --no-cache"
   },
   "dependencies": {
-    "@stark-innovations/common": "^1.0.20",
+    "@stark-innovations/common": "^1.0.22",
     "@types/bull": "^3.15.9",
     "bull": "^4.8.5",
     "node-nats-streaming": "^0.3.3-1",
